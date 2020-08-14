@@ -5,7 +5,9 @@ import {Observable, Subject, throwError} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {catchError, tap} from "rxjs/operators";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class AuthService {
 
@@ -61,7 +63,7 @@ export class AuthService {
   }
 
 
-  private setToken(response: FbAuthResponse | null) {
+  static setToken(response: FbAuthResponse | null) {
     if (response) {
       const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000);
       localStorage.setItem('fb-token', response.idToken);
