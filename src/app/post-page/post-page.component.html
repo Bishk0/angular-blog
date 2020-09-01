@@ -1,18 +1,17 @@
-<div class="post">
-  <div class="header">
-    <h1>Post title</h1>
+<div *ngIf="posts$ | async as post; else loading">
+  <div class="post">
+    <div class="header">
+      <h1>{{post.title}}</h1>
 
-    <button routerLink="/" class="btn btn-link">home page</button>
-  </div>
-  <div class="info">
-    <strong>Bishko</strong>
-    <small>12.12.12</small>
-  </div>
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur commodi dolore, dolores ducimus eos excepturi harum incidunt ipsa ipsam iusto laudantium nulla numquam odit omnis optio possimus quidem rem sunt tempora tenetur, unde veritatis vitae voluptate voluptates. Blanditiis dicta doloremque enim excepturi itaque molestiae quibusdam quisquam? Inventore, perferendis, suscipit.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur commodi dolore, dolores ducimus eos excepturi harum incidunt ipsa ipsam iusto laudantium nulla numquam odit omnis optio possimus quidem rem sunt tempora tenetur, unde veritatis vitae voluptate voluptates. Blanditiis dicta doloremque enim excepturi itaque molestiae quibusdam quisquam? Inventore, perferendis, suscipit.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur commodi dolore, dolores ducimus eos excepturi harum incidunt ipsa ipsam iusto laudantium nulla numquam odit omnis optio possimus quidem rem sunt tempora tenetur, unde veritatis vitae voluptate voluptates. Blanditiis dicta doloremque enim excepturi itaque molestiae quibusdam quisquam? Inventore, perferendis, suscipit.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur commodi dolore, dolores ducimus eos excepturi harum incidunt ipsa ipsam iusto laudantium nulla numquam odit omnis optio possimus quidem rem sunt tempora tenetur, unde veritatis vitae voluptate voluptates. Blanditiis dicta doloremque enim excepturi itaque molestiae quibusdam quisquam? Inventore, perferendis, suscipit.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur commodi dolore, dolores ducimus eos excepturi harum incidunt ipsa ipsam iusto laudantium nulla numquam odit omnis optio possimus quidem rem sunt tempora tenetur, unde veritatis vitae voluptate voluptates. Blanditiis dicta doloremque enim excepturi itaque molestiae quibusdam quisquam? Inventore, perferendis, suscipit.
+      <button routerLink="/" class="btn btn-link">home page</button>
+    </div>
+    <div class="info">
+      <strong>{{post.author}}</strong>
+      <small>{{post.date | date:'medium':null:'ua'}}</small>
+    </div>
+    <div>
+      <quill-view-html [content]="post.text"></quill-view-html>
+    </div>
   </div>
 </div>
+<ng-template #loading><p class="text-center">Loading...</p></ng-template>
